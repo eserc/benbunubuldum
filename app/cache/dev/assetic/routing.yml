@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /media/sf_github/benbunubuldum/app/config/routing_dev.yml
