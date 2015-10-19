@@ -1,36 +1,42 @@
 <?php
+
 namespace AppBundle\Entity;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
- * @ORM\Table(name="lcl_user")
+ * User
+ *
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_319AA28B92FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_319AA28BA0D96FBF", columns={"email_canonical"})})
+ * @ORM\Entity
  */
 class User extends BaseUser
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
     /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
-    protected $facebook_id;
+    protected $facebookId;
     /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
-    protected $facebook_access_token;
+    protected $facebookAccessToken;
     /** @ORM\Column(name="google_id", type="string", length=255, nullable=true) */
-    protected $google_id;
+    protected $googleId;
     /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
-    protected $google_access_token;
-    
-    
+    protected $googleAaccessToken;
+
+
     //YOU CAN ADD MORE CODE HERE !
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -45,7 +51,7 @@ class User extends BaseUser
      */
     public function setFacebookId($facebookId)
     {
-        $this->facebook_id = $facebookId;
+        $this->facebookId = $facebookId;
 
         return $this;
     }
@@ -53,11 +59,11 @@ class User extends BaseUser
     /**
      * Get facebook_id
      *
-     * @return string 
+     * @return string
      */
     public function getFacebookId()
     {
-        return $this->facebook_id;
+        return $this->facebookId;
     }
 
     /**
@@ -68,7 +74,7 @@ class User extends BaseUser
      */
     public function setFacebookAccessToken($facebookAccessToken)
     {
-        $this->facebook_access_token = $facebookAccessToken;
+        $this->facebookAccessToken = $facebookAccessToken;
 
         return $this;
     }
@@ -76,11 +82,11 @@ class User extends BaseUser
     /**
      * Get facebook_access_token
      *
-     * @return string 
+     * @return string
      */
     public function getFacebookAccessToken()
     {
-        return $this->facebook_access_token;
+        return $this->facebookAccessToken;
     }
 
     /**
@@ -91,7 +97,7 @@ class User extends BaseUser
      */
     public function setGoogleId($googleId)
     {
-        $this->google_id = $googleId;
+        $this->googleId = $googleId;
 
         return $this;
     }
@@ -99,11 +105,11 @@ class User extends BaseUser
     /**
      * Get google_id
      *
-     * @return string 
+     * @return string
      */
     public function getGoogleId()
     {
-        return $this->google_id;
+        return $this->googleId;
     }
 
     /**
@@ -114,7 +120,7 @@ class User extends BaseUser
      */
     public function setGoogleAccessToken($googleAccessToken)
     {
-        $this->google_access_token = $googleAccessToken;
+        $this->googleAccessToken = $googleAccessToken;
 
         return $this;
     }
@@ -122,10 +128,10 @@ class User extends BaseUser
     /**
      * Get google_access_token
      *
-     * @return string 
+     * @return string
      */
     public function getGoogleAccessToken()
     {
-        return $this->google_access_token;
+        return $this->googleAccessToken;
     }
 }
