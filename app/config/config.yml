@@ -84,6 +84,40 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
 
+fos_rest:
+    body_listener:
+        decoders:
+          json: fos_rest.decoder.json
+    body_converter:
+        enabled: true
+        validate: true
+    param_fetcher_listener: true
+    format_listener: true
+    serializer:
+        serialize_null: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    exception:
+            enabled: true
+            exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
+            codes:
+                'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+                'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+                'Symfony\Component\HttpKernel\Exception\BadRequestHttpException': 400
+            messages:
+                'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+                'Symfony\Component\HttpKernel\Exception\BadRequestHttpException': true
+
+jms_serializer:
+    visitors:
+        json:
+            options: JSON_PRETTY_PRINT
 
 hwi_oauth:
     #this is my custom user provider, created from FOSUBUserProvider - will manage the 

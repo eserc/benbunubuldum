@@ -40,3 +40,8 @@ facebook_login:
 
 google_login:
     pattern: /login/check-google
+
+api:
+    prefix: /api
+    type: rest
+    resource: "@AppBundle/Resources/config/routing.yml"
